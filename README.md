@@ -12,8 +12,34 @@ The challenge is to make analytical observations about the data using the distri
 > `SESSION_KEY` is integer value which starts with 0, 
 > and update when same IP has been last accessed 30 minutes ago(defined on wiki) 
 
+Result looks like:
+```
++------------------------+-----+
+|session                 |count|
++------------------------+-----+
+|112.196.25.164:55986__0 |1946 |
+|112.196.25.164:42792__0 |1752 |
+|112.196.25.164:37516__0 |1429 |
+|106.51.132.54:5048__0   |414  |
+|106.51.132.54:4508__0   |303  |
+|88.198.69.103:47828__0  |239  |
+|78.46.60.71:58504__0    |237  |
+|106.51.132.54:5049__0   |235  |
+...
+...
+```
+
 2.Determine the average session time
-> I've defined `max(timestamp) - min(timestamp)` value for each session, and get average value of all. 
+> I've defined `max(timestamp) - min(timestamp)` value for each session, and get average value of all.
+
+Result looks like:
+```
++-----------------+
+|      avgDuration|
++-----------------+
+|1.635632908837669|
++-----------------+
+``` 
 
 3.Determine unique URL visits per session. To clarify, count a hit to a unique URL only once per session.
 > I've used url with query parsed to use it as identifier
@@ -21,8 +47,39 @@ The challenge is to make analytical observations about the data using the distri
 >  
 > Not sure about this, but thought it will be better for the concept of this question.
 
+Result looks like:
+```
++------------------------+----------+
+|session                 |uniqueUrls|
++------------------------+----------+
+|106.51.132.54:5048__0   |287       |
+|88.198.69.103:47828__0  |239       |
+|78.46.60.71:58504__0    |237       |
+|213.239.204.204:35094__0|234       |
+|106.51.132.54:5049__0   |233       |
+|106.51.132.54:5037__0   |205       |
+|106.51.132.54:4508__0   |178       |
+...
+...
+``` 
+
 4.Find the most engaged users, ie the IPs with the longest session times
 > Like question number 2, I've defined I've defined `max(timestamp) - min(timestamp)` value for each session.
+
+Result looks like:
+```
++----------------------+--------+
+|session               |duration|
++----------------------+--------+
+|106.186.23.95:35626__0|66.511  |
+|106.186.23.95:35632__0|66.511  |
+|106.186.23.95:35629__0|66.511  |
+|106.186.23.95:39639__0|66.5    |
+|106.186.23.95:40598__0|66.5    |
+|106.186.23.95:39646__0|66.5    |
+|106.186.23.95:39172__0|66.5    |
+
+```
 
 ### Tools:
 - Scala 2.12
