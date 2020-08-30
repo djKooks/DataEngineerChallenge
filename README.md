@@ -7,18 +7,22 @@ The challenge is to make analytical observations about the data using the distri
 
 1.Sessionize the web log by IP. Sessionize = aggregate all page hits by visitor/IP during a session.
     https://en.wikipedia.org/wiki/Session_(web_analytics)
-    
 > I've defined session with `${IP}:${PORT}__${SESSION_KEY}`
->   `SESSION_KEY` is integer value which starts with 0, 
->   and update when same IP has been last accessed 30 minutes ago(defined on wiki) 
+> 
+> `SESSION_KEY` is integer value which starts with 0, 
+> and update when same IP has been last accessed 30 minutes ago(defined on wiki) 
 
 2.Determine the average session time
+> I've defined `max(timestamp) - min(timestamp)` value for each session, and get average value of all. 
 
 3.Determine unique URL visits per session. To clarify, count a hit to a unique URL only once per session.
-
-> I've used url with query parsed to use as an identifier
+> I've used url with query parsed to use it as identifier
+> For example if raw url is `https://paytm.com:443/shop/authresponse?code=f2405b05-e2ee-4b0d-8f6a-9fed0fcfe2e0&state=null`, I've converted with `https://paytm.com:443/shop/authresponse`.
+>  
+> Not sure about this, but thought it will be better for the concept of this question.
 
 4.Find the most engaged users, ie the IPs with the longest session times
+> Like question number 2, I've defined I've defined `max(timestamp) - min(timestamp)` value for each session.
 
 ### Tools:
 - Scala 2.12
